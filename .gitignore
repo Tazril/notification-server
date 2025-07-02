@@ -1,0 +1,4 @@
+notifications.db
+*.db
+*.exe
+*.test

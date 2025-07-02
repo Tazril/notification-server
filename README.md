@@ -145,66 +145,10 @@ DELETE /notifications/{id}
 }
 ```
 
-## Example Usage
-
-### Create and Send a Notification
-
-1. **Create a notification:**
-```bash
-curl -X POST http://localhost:8080/notifications \
-  -H "Content-Type: application/json" \
-  -d '{
-    "current_btc_price": 45000.50,
-    "market_trade_volume": 1500000000.75,
-    "intra_day_high_price": 46200.00,
-    "market_cap": 850000000000.25
-  }'
-```
-
-2. **Send the notification (use the ID from step 1):**
-```bash
-curl -X POST http://localhost:8080/notifications/{notification-id}/send \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "user@example.com"
-  }'
-```
-
-3. **Check notification status:**
-```bash
-curl http://localhost:8080/notifications
-```
-
 ## Notification States
 
 - **CREATED**: Notification has been created but not yet sent
 - **SENT**: Notification has been successfully sent to the recipient
 - **FAILED**: Notification sending failed
 
-## Data Models
-
-### Notification
-```go
-type Notification struct {
-    ID                string
-    CurrentBTCPrice   float64
-    MarketTradeVolume float64
-    IntraDayHighPrice float64
-    MarketCap         float64
-    State             NotificationState // CREATED, SENT, FAILED
-    Active            bool
-    CreatedAt         time.Time
-    UpdatedAt         time.Time
-}
-```
-
-### NotificationState
-```go
-type NotificationState string
-
-const (
-    CREATED NotificationState = "CREATED"
-    SENT    NotificationState = "SENT"
-    FAILED  NotificationState = "FAILED"
-)
-```
+=
